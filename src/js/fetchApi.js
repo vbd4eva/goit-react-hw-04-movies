@@ -3,21 +3,43 @@ export default class FetchApi {
     constructor(optionsObj){ 
         this.options = {
             BASE_URL: 'https://api.themoviedb.org/3/',
-            // defaultOptions: 'image_type=photo&orientation=horizontal',
-            // page: 1,
             // per_page: 12,
             sources: {
                 trendMoviesDay: "trending/movie/day",
+                searchMovies: "search/movie",
+            },
+            options: {
+                page: 1,
+                language:'en-US',
+                query:'',
+                adult:false
             },
             key: '5109669929d60bcec12dd0fb9f3893cc',
             ...optionsObj
         }
-
-
     }
 
+    // https://api.themoviedb.org/3/search/movie?api_key=5109669929d60bcec12dd0fb9f3893cc&language=en-US&query=batman&page=1&include_adult=false
+
+    async searchMovies(searchQuery) {
+        const { BASE_URL, key, sources, options } = this.options;
+        if (searchQuery) options.query = searchQuery;
+        const url = `${BASE_URL}${sources.searchMovies}?api_key=${key}&query=${options.query}&language=${options.language}&include_adult=${options.adult}`;
+
+        try {
+            const response = await fetch(url);
+            return response.json()
+                .then(({results}) => results);
+        }
+        catch (error) {
+            console.log("Ошибка КЕЧ", error);
+        }
+    }
+
+
     async trendMoviesDay() { 
-        const url = this.getUrl("trendMoviesDay");
+        const { BASE_URL, key, sources, options } = this.options;
+        const url = `${BASE_URL}${sources.trendMoviesDay}?api_key=${key}&${options.page}`;
 
         try {
             const response = await fetch(url);
@@ -30,8 +52,8 @@ export default class FetchApi {
     }
 
     getUrl(source) {
-        const { BASE_URL, sources, key } = this.options;        
-        const url = BASE_URL+sources[source]+'?api_key='+key;
+        const { BASE_URL, key } = this.options;        
+        const url = BASE_URL+source+'?api_key='+key;
         return url;
     }
     // getUrl() {

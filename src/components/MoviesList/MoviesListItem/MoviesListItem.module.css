@@ -30,11 +30,13 @@
   top: 0px;
   left: 50%;
   transform: translate(-50%, -53%);
+  width: 45px;
   border: 2px solid;
   margin: 0;
   padding: 10px;
   border-radius: 50%;
   font-weight: 700;
+  text-align: center;
   color: #ffffff;
 }
 .overview {
