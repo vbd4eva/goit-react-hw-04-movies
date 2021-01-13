@@ -8,7 +8,7 @@ import MoviesList from '../MoviesList/MoviesList'
 const fetchApi = new FetchApi();
 
 
-function Trendings() {
+function MoviesTrends() {
 
     const [trendMovies, setTrendMovies] = useState([]);
 
@@ -18,8 +18,8 @@ function Trendings() {
 
     return (
         <div>
-            <h2>Trendings.js</h2>
-            <MoviesList list={trendMovies} />
+            <h2>MoviesTrends.js</h2>
+            {trendMovies && <MoviesList list={trendMovies} />}
         </div>
     )
 
@@ -30,4 +30,4 @@ function Trendings() {
     }
 }
 
-export default Trendings
+export default MoviesTrends

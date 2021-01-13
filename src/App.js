@@ -1,22 +1,32 @@
-
-// import Trendings from './components/Trendings/Trendings';
-import MoviesSearch from './components/MoviesSearch/MoviesSearch';
+import {Switch, Route} from 'react-router-dom'
 
 
-export default function App() {
+import Navigation from './components/Navigation/Navigation';
 
+import HomePage from './views/HomePage';
+import MoviesPage from './views/MoviesPage';
+import MovieDetailsPage from './views/MovieDetailsPage';
 
-  
+export default function App() {  
 
   return (
     <>
       <h1>App.js</h1>
+        <Navigation />        
 
-      
-      {/* <Trendings />
-       */}
+      <Switch>
+        <Route path="/movies" exact>
+          <MoviesPage/>        
+        </Route>
 
-      <MoviesSearch />
+        <Route path="/movies/:movieId">
+          <MovieDetailsPage/>
+        </Route>
+
+        <Route>
+          <HomePage/>
+        </Route>
+      </Switch>
     </>
   );
 }

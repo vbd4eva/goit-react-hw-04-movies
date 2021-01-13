@@ -27,9 +27,7 @@ export default function MoviesSearch() {
         </div>
     )
 
-    async function fetchSearchMovies(submitedSearchQuery) {
-        const searchedMovies = await fetchApi.searchMovies(submitedSearchQuery).then(movies => movies);
-
-        setFindedMovies(movies=>[...movies, ...searchedMovies]);
+    function fetchSearchMovies(submitedSearchQuery) {
+        fetchApi.searchMovies(submitedSearchQuery).then(setFindedMovies);
     }
 }

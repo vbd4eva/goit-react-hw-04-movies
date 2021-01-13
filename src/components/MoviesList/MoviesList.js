@@ -12,12 +12,14 @@ function MoviesList({list}) {
             <h2>MoviesList</h2>
             <ul className={s.listMovies}>
                 {list.map(
-                    ({ id, title, overview, vote_average, poster_path }) =>
+                    ({ id, title, overview, vote_average, poster_path, adult }) =>
                         <MoviesListItem key={id}
+                            id={id}
                             title={title}
                             overview={overview}
                             vote={vote_average}
                             poster={poster_path}
+                            adult={adult}
                         />
                 )}
             </ul>

@@ -43,3 +43,7 @@
 }
 .poster {
 }
+.adult {
+  color: red;
+  font-weight: bold;
+}
