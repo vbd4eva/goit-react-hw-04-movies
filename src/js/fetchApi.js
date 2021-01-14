@@ -7,7 +7,9 @@ export default class FetchApi {
             sources: {
                 trendMoviesDay: "trending/movie/day",
                 searchMovies: "search/movie",
-                singleMovie: "movie"
+                singleMovie: "movie",
+                cast: "credits",
+                reviews: "reviews"                
             },
             options: {
                 page: 1,
@@ -20,7 +22,7 @@ export default class FetchApi {
         }
     }
 
-    // https://api.themoviedb.org/3/search/movie?api_key=5109669929d60bcec12dd0fb9f3893cc&language=en-US&query=batman&page=1&include_adult=false
+    // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 
     async trendMoviesDay() { 
         const { BASE_URL, key, sources, options } = this.options;
@@ -61,47 +63,31 @@ export default class FetchApi {
         }
     }
 
-    // getUrl(source) {
-    //     const { BASE_URL, key } = this.options;        
-    //     const url = BASE_URL+source+'?api_key='+key;
-    //     return url;
-    // }
-    // getUrl() {
-    //     const { BASE_URL, defaultOptions, searchQuery, page, per_page, key } = this.options;
-    //     const url = `${BASE_URL}?${defaultOptions}&q=${searchQuery}&page=${page}&per_page=${per_page}&key=${key}`;
-    //     return url;
-    // }
-    // async fetchImages(url) { 
-    //     // return fetch(url)
-    //     //     .then(response => response.json())
-    //     //     .then(({hits}) => { 
-    //     //         this.options.page += 1;
-    //     //         return hits;
-    //     //     })
-    //     //     .catch(console.log);
-    //     try {
-    //         const response = await fetch(url);
-    //         this.options.page += 1;
-    //         return response.json()
-    //             .then(({ hits }) => hits);
-    //     }
-    //     catch (error) {
-    //         console.log("Ошибка КЕЧ", error);
-    //     }
-    // }
-            
-    // getImages(searchQuery) {
+    async creditsByMovieId(id) {
+        const { BASE_URL, key, sources } = this.options;
+        const url = `${BASE_URL}${sources.singleMovie}/${id}/${sources.cast}?api_key=${key}`;
 
-    //     if (searchQuery) {
-    //         this.options.searchQuery = searchQuery;
-    //         this.options.page = 1;
-    //     }
-            
-        
-    //     const url = this.getUrl();
+        try {
+            const response = await fetch(url);
+            return response.json().then(({cast}) => cast.slice(0, 7));
+        }
+        catch (error) {
+            console.log("Ошибка КЕЧ", error);
+        }
+    }
 
-    //      return this.fetchImages(url);
-    // }
+    async reviewsByMovieId(id) {
+        const { BASE_URL, key, sources } = this.options;
+        const url = `${BASE_URL}${sources.singleMovie}/${id}/${sources.reviews}?api_key=${key}`;
+
+        try {
+            const response = await fetch(url);
+            return response.json().then(({results}) => results.reverse());
+        }
+        catch (error) {
+            console.log("Ошибка КЕЧ", error);
+        }
+    }
 }
     
     

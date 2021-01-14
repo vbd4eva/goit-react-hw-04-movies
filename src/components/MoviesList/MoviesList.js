@@ -6,7 +6,6 @@ import s from './MoviesList.module.css'
 import MoviesListItem from './MoviesListItem/MoviesListItem'
 
 function MoviesList({list}) {
-    console.log(list)
     return (
         <>
             <h2>MoviesList</h2>
