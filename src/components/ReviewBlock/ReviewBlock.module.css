@@ -1,0 +1,32 @@
+.block {
+  box-shadow: 0 2px 8px #bdbdbd;
+  padding: 0;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  width: 80%;
+}
+
+.header {
+  margin: 0;
+  background-color: #eeeeee;
+  padding: 10px;
+}
+
+.date {
+  font-style: italic;
+  display: block;
+}
+
+.name {
+}
+
+.userName {
+}
+
+.content {
+  margin: 0;
+  padding: 20px;
+  text-align: justify;
+}

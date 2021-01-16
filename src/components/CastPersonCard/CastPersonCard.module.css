@@ -1,0 +1,29 @@
+.person {
+  box-shadow: 0 2px 8px #bdbdbd;
+  padding: 10px;
+  display: table;
+  width: 154px;
+  margin-right: 20px;
+}
+.image {
+  /* width: 154px;
+  padding: 3px; */
+}
+.poster {
+  width: 100%;
+}
+.inf {
+  text-align: center;
+  margin: 0;
+}
+
+.name {
+  display: block;
+  font-style: italic;
+  text-align: left;
+}
+.character {
+  display: block;
+  font-weight: 600;
+  text-align: right;
+}

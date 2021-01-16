@@ -1,0 +1,16 @@
+.cast {
+  padding: 0 20px;
+}
+.list {
+  margin: 0;
+  list-style-type: none;
+  padding: 20px 6px;
+  display: flex;
+  overflow-y: auto;
+}
+.list:after {
+  content: "";
+  display: table;
+  width: 10px;
+  height: 10px;
+}

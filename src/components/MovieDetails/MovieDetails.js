@@ -1,3 +1,4 @@
+import Header from '../Header/Header'
 
 import s from './MovieDetails.module.css'
 
@@ -8,14 +9,15 @@ export default function MovieDetails({singleMovie}) {
     return (
         <div className={s.container} style={containerInlineStyle}>
             <div className={s.content}>
-                <h1 className={s.title}>{title}</h1>
+
+                <Header title={title} rank="1" className={s.title} />
 
                 <img
                     loading="lazy"
                     className={s.poster}
-                    src={'https://image.tmdb.org/t/p/w300/'+poster}
+                    src={'https://image.tmdb.org/t/p/w300'+poster}
                     //   srcset={`https://image.tmdb.org/t/p/w220_and_h330_face/${poster} 1x, https://image.tmdb.org/t/p/w440_and_h660_face/${poster} 2x`}
-                    srcSet={`https://image.tmdb.org/t/p/w300/${poster} 1x, https://image.tmdb.org/t/p/w780/${poster} 2x`}
+                    srcSet={`https://image.tmdb.org/t/p/w300${poster} 1x, https://image.tmdb.org/t/p/w780${poster} 2x`}
                     alt={title + " poster"}
                 />
 

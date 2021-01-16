@@ -6,24 +6,29 @@ import s from './MoviesListItem.module.css'
 function MoviesListItem({ id, title, overview, vote, poster, adult }) {
   return (
     <li className={s.movieCart}>
-      <Link to={`/movies/${id}`}>
-          <div className={s.image}>
+      
+        <div className={s.image}>
               <img
                 loading="lazy"
                 className={s.poster}
-                src={'https://image.tmdb.org/t/p/w300/'+poster}
-              //   srcset={`https://image.tmdb.org/t/p/w220_and_h330_face/${poster} 1x, https://image.tmdb.org/t/p/w440_and_h660_face/${poster} 2x`}
-                srcSet={`https://image.tmdb.org/t/p/w300/${poster} 1x, https://image.tmdb.org/t/p/w780/${poster} 2x`}
+                src={'https://image.tmdb.org/t/p/w300'+poster}
+              //   srcset={`https:/image.tmdb.org/t/p/w220_and_h330_face/${poster} 1x, https://image.tmdb.org/t/p/w440_and_h660_face/${poster} 2x`}
+                srcSet={`https://image.tmdb.org/t/p/w300${poster} 1x, https://image.tmdb.org/t/p/w780${poster} 2x`}
                 alt={title + "poster"}
               />
             </div>
-        <div className={s.content}>
+        
+        <div className={s.brief}>
           {adult && <p className={s.adult}>adult!</p>}
+              <Link to={`/movies/${id}`}>
                 <h3 className={s.title}>{title}</h3>
+              </Link>
                 <p className={s.vote}>{vote}</p>
-                <p className={s.overview}>{overview}</p>
-            </div>          
-        </Link>
+        </div>  
+        
+      {overview && 
+        <p className={s.overview}>{overview}</p>
+      }
     </li>
   );
 }

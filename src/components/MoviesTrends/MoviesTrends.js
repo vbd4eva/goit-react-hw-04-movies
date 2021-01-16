@@ -3,10 +3,13 @@ import {useState, useEffect} from 'react'
 import FetchApi from '../../js/fetchApi'
 
 import MoviesList from '../MoviesList/MoviesList'
+import Header from '../Header/Header'
 
+import s from './MoviesTrends.module.css'
   
 const fetchApi = new FetchApi();
 
+const HEADER_TEXT = 'Movies in day Trends'
 
 function MoviesTrends() {
 
@@ -17,10 +20,11 @@ function MoviesTrends() {
     },[]);
 
     return (
-        <div>
-            <h2>MoviesTrends.js</h2>
+        <section className={s.trends}>
+            <Header title={HEADER_TEXT} rank="2" />
+            
             {trendMovies && <MoviesList list={trendMovies} />}
-        </div>
+        </section>
     )
 
     async function fetchTrendsMovies() {

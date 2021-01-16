@@ -8,7 +8,6 @@ import MoviesListItem from './MoviesListItem/MoviesListItem'
 function MoviesList({list}) {
     return (
         <>
-            <h2>MoviesList</h2>
             <ul className={s.listMovies}>
                 {list.map(
                     ({ id, title, overview, vote_average, poster_path, adult }) =>
