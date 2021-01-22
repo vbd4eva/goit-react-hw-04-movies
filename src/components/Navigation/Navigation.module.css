@@ -1,12 +1,18 @@
+.container {
+  position: relative;
+}
+
 .nav {
   display: flex;
   background-color: #eeeeee;
+  padding-left: 50px;
 }
 
 .link {
   text-transform: capitalize;
   text-decoration: none;
   padding: 20px;
+  margin-left: 15px;
 }
 
 .active {

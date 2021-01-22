@@ -1,14 +1,15 @@
-import {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import {useState, useEffect, useRef} from 'react'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 
 import MovieDetails from '../components/MovieDetails/MovieDetails'
+import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack'
 import MovieDetailsAdditional from './MovieDetailsAdditionalView/MovieDetailsAdditionalView'
 
 
 import FetchApi from '../js/fetchApi'
 const fetchApi = new FetchApi();
 
-export default function MovieDetailsPage() {
+export default function MovieDetailsPage() {    
 
     const [singleMovie, setSingleMovie] = useState(null);
 
@@ -20,12 +21,24 @@ export default function MovieDetailsPage() {
             return;
         } 
         fetchApi.movieById(movieId).then(setSingleMovie);
-    },[movieId]);
+    }, [movieId]);
+    
+    const history = useHistory();
+    const {state} = useLocation();    
+    const {current: goBackLink } = useRef(state?.from);
+
+    function goBack() {
+        goBackLink && history.push(goBackLink);
+    }
+
 
     return (
         <div>
             {singleMovie &&
                 <>
+                    {goBackLink && 
+                        <ButtonGoBack onClick={goBack}/>
+                    }                    
                     <MovieDetails singleMovie={singleMovie} />
                     <MovieDetailsAdditional />
                 </>

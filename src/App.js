@@ -1,9 +1,9 @@
 import {Switch, Route} from 'react-router-dom'
 
-
 import {lazy, Suspense} from 'react';
 
 import Navigation from './components/Navigation/Navigation';
+import TMDb from './components/TMDb/TMDb';
 
   const HomePage = lazy(() => import('./views/HomePage.js' /* webpackChunkName: "HomePage" */));
   const MoviesPage = lazy(() => import('./views/MoviesPage.js' /* webpackChunkName: "MoviesPage" */));
@@ -13,6 +13,8 @@ export default function App() {
 
   return (
     <>
+      <TMDb />
+
       <Navigation />   
        
       <Suspense fallback={<h1>Loading ...</h1>}>

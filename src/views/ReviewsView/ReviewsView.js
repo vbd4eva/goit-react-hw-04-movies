@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header'
 import ReviewBlock from "../../components/ReviewBlock/ReviewBlock"
 import Notification from '../../components/Notification/Notification'
 
-import s from './ReviewsView.module.css'
+// import s from './ReviewsView.module.css'
 
 import FetchApi from '../../js/fetchApi'
 const fetchApi = new FetchApi();
@@ -24,8 +24,6 @@ export default function ReviewsView() {
         fetchApi.reviewsByMovieId(movieId).then(setMovieReviews);
 
     },[movieId]);
-
-    console.log(movieReviews);
 
     return (
         <>

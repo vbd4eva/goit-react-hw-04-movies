@@ -69,7 +69,7 @@ export default class FetchApi {
 
         try {
             const response = await fetch(url);
-            return response.json().then(({cast}) => cast.slice(0, 7));
+            return response.json().then(({cast}) => cast.slice(0, 9));
         }
         catch (error) {
             console.log("Ошибка КЕЧ", error);

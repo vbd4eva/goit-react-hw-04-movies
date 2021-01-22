@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 import s from './Searchbar.module.css';
@@ -15,6 +17,19 @@ export default function Searchbar({onSubmit}) {
 
     const [searchQuery, setSearchQuery] = useState('');
 
+    const history = useHistory();
+    const location = useLocation();
+
+    useEffect(() => {
+        const searchQuery = new URLSearchParams(location.search).get('query')?.trim();
+
+        if (!searchQuery) return;
+
+        setSearchQuery(searchQuery);
+
+        onSubmit(searchQuery.toLowerCase());
+    },[location.search, onSubmit]);
+
     const submitForm = (e) => {
         e.preventDefault();
         const searchFormQuery = searchQuery.trim();
@@ -26,8 +41,10 @@ export default function Searchbar({onSubmit}) {
             return;
         }
 
-
-        onSubmit(searchFormQuery.toLowerCase());
+        history.push({
+            ...location,
+            search: `query=${searchFormQuery}`
+        });
     }
 
      return (

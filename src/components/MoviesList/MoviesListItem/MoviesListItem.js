@@ -1,36 +1,41 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useHistory,  } from "react-router-dom";
+
+import Poster from '../../Poster/Poster'
 
 import s from './MoviesListItem.module.css'
 
 function MoviesListItem({ id, title, overview, vote, poster, adult }) {
+
+  const history = useHistory();
+  const href = history.createHref(history.location);
+
   return (
     <li className={s.movieCart}>
       
-        <div className={s.image}>
-              <img
-                loading="lazy"
-                className={s.poster}
-                src={'https://image.tmdb.org/t/p/w300'+poster}
-              //   srcset={`https:/image.tmdb.org/t/p/w220_and_h330_face/${poster} 1x, https://image.tmdb.org/t/p/w440_and_h660_face/${poster} 2x`}
-                srcSet={`https://image.tmdb.org/t/p/w300${poster} 1x, https://image.tmdb.org/t/p/w780${poster} 2x`}
-                alt={title + "poster"}
-              />
-            </div>
+      <div className={s.image}>
+        <Poster src={poster} movieTitle={title} />
+      </div>
         
-        <div className={s.brief}>
-          {adult && <p className={s.adult}>adult!</p>}
-              <Link to={`/movies/${id}`}>
-                <h3 className={s.title}>{title}</h3>
-              </Link>
-                <p className={s.vote}>{vote}</p>
-        </div>  
+      <div className={s.brief}>
+        {adult && <p className={s.adult}>adult!</p>}
+        <Link to={{
+          pathname: `/movies/${id}`,
+          state: {
+            from: href
+          }
+        }}>
+          <h3 className={s.title}>{title}</h3>
+        </Link>
+        <p className={s.vote}>{vote}</p>
+      </div>
         
-      {overview && 
+      {overview &&
         <p className={s.overview}>{overview}</p>
       }
     </li>
   );
+
 }
 
 MoviesListItem.propTypes = {
@@ -38,7 +43,7 @@ MoviesListItem.propTypes = {
   title: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
-  poster: PropTypes.string.isRequired,
 };
 
 export default MoviesListItem;
+

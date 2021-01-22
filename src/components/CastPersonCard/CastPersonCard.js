@@ -1,19 +1,15 @@
+import PropTypes from "prop-types";
+
+import Avatar from '../Avatar/Avatar';
+
 import s from './CastPersonCard.module.css'
 
-export default function CastPersonCard({ id, name, character, avatar }) {
+export default function CastPersonCard({ name, character, gender, avatar }) {
     return (
         <li className={s.person}>
 
             <div className={s.image}>
-
-              <img
-                loading="lazy"
-                className={s.poster}
-                src={'https://image.tmdb.org/t/p/w154'+avatar}
-                srcSet={`https://image.tmdb.org/t/p/w154${avatar} 1x, https://image.tmdb.org/t/p/w300${avatar} 2x`}
-                alt={name + "portrait"}
-                />
-                
+                <Avatar name={name} gender={gender} src={avatar} />
             </div>
 
             <p className={s.inf}>
@@ -24,4 +20,11 @@ export default function CastPersonCard({ id, name, character, avatar }) {
         </li>
 
     )
+}
+
+CastPersonCard.propTypes = {
+    name: PropTypes.string.isRequired,
+    character: PropTypes.string.isRequired,
+    gender: PropTypes.number.isRequired,
+    avatar: PropTypes.string,
 }

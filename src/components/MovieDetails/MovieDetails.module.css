@@ -20,10 +20,9 @@
 }
 
 .poster {
+  width: 300px;
 }
 
-.language {
-}
 .rating,
 .abbr {
   height: 25px;
