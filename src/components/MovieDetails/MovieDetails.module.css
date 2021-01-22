@@ -1,6 +1,7 @@
 .container {
   background-size: cover;
   color: #78909c;
+  position: relative;
 }
 
 .content {
